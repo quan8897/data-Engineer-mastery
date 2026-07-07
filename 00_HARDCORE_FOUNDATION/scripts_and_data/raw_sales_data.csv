@@ -1,0 +1,10 @@
+id,customer_name,amount,sale_date
+1,Nguyen Van A,500000,2026-04-01
+2,Tran Thi B,-1000,2026/04/02
+3,,300000,2026-04-03
+4,Le Van C,400000.5,04-04-2026
+5,Pham Van D,150000,2026-04-05
+6,BrokenRow,NoPrice,NoDate
+7,Hoang Van E,1200000,2026-04-06
+8,MissingColumnTest,250000
+    
