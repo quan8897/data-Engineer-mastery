@@ -52,7 +52,16 @@ ví dụ: giao dịch rút tiền của các công dân trong 1 năm có 12 thá
 
 # Về OLTP & OLAP: 
 Anh bảo không nên chạy truy vấn OLAP trên database OLTP vì tốn tài nguyên. Vậy trong thực tế, làm thế nào ta đồng bộ dữ liệu từ hệ thống giao dịch (OLTP) sang kho dữ liệu (OLAP) mà không làm ảnh hưởng đến hiệu năng của OLTP trong giờ làm việc của hành chính công?
->>chúng ta sẽ viết một pipeline và đưa vào kho riêng biệt, không chạy trên hệ thống OLTP
+
+> **[❌ Câu trả lời cũ — ĐÚNG HƯỚNG nhưng thiếu cơ chế — ghi lại để nhớ]**
+> ~~"chúng ta sẽ viết một pipeline và đưa vào kho riêng biệt, không chạy trên hệ thống OLTP"~~
+> **Tại sao chưa đủ:** Đây là đúng về ý tưởng tổng thể, nhưng trong phỏng vấn cấp Senior hoặc khi thiết kế hệ thống quốc gia, cần phải nêu được **cơ chế kỹ thuật cụ thể** — pipeline đó đọc dữ liệu từ đâu, bằng cách nào, vào lúc nào.
+
+> **[✅ Đã hiểu lại — 11/08/2026]**
+> **Pipeline đưa sang kho riêng — đúng. Cơ chế cụ thể gồm 3 lớp:**
+> 1. **Read Replica (Đọc từ bản sao):** ETL pipeline KHÔNG BAO GIỜ đọc từ DB Master (đang ghi giao dịch). Tạo một bản sao chỉ đọc (Read Replica) được đồng bộ thời gian thực — pipeline lấy dữ liệu từ đây, DB Master không bị ảnh hưởng.
+> 2. **CDC — Change Data Capture:** Thay vì `SELECT *` quét toàn bộ bảng (tốn I/O ổ cứng), dùng công cụ như Debezium hoặc Kafka Connect để "đọc trộm" WAL log / Binlog của DB. Chỉ kéo những dòng **thực sự thay đổi**, chi phí gần bằng 0% CPU của database.
+> 3. **Off-peak Batching (Lập lịch giờ thấp điểm):** Chạy pipeline vào lúc 2 giờ sáng khi không có giao dịch hành chính công — tương tự cron job đã thiết kế ở Module 0.
 # Về thứ tự thực thi SQL: Hãy xem câu lệnh sau:
 sql:
 SELECT quy, SUM(doanh_so) AS tong_doanh_so

@@ -10,14 +10,34 @@
 MODULE:     1 — Data Warehousing & SQL Mastery
 TASK:       3 — Data Modeling Nâng cao (Snowflake vs Star, SCD)
 GIAI ĐOẠN:  RESEARCH (Học viên đang tự nghiên cứu)
-TRẠNG THÁI: Học viên trả lời xuất sắc câu hỏi khởi động về SCD. Đang nghiên cứu phần 1 (Star vs Snowflake) và phần 3 (Surrogate Keys).
+TRẠNG THÁI: Vừa hoàn thành phiên ôn tập 3 khái niệm Module 0 (11/08/2026).
+             Câu hỏi PENDING về Surrogate Key & SCD Type 2 chưa trả lời.
 
-FILE CHỜ TẠO:
+FILE ĐANG THỰC HIỆN:
   01_DATA_WAREHOUSING_SQL/RESEARCH_03_DATA_MODELING.md
 
 CÂU HỎI ĐANG CHỜ TRẢ LỜI (PENDING):
-  "Tại sao Kimball khuyên tuyệt đối không dùng số CCCD (Natural Key) làm Khóa chính (Primary Key) trong các bảng Dimension mà bắt buộc phải dùng Khóa thay thế (Surrogate Key) tự tăng? Khóa thay thế giúp giải quyết bài toán lưu trữ nhiều phiên bản lịch sử (SCD Type 2) của cùng một số CCCD như thế nào?"
+  1. "Tại sao Kimball khuyên tuyệt đối không dùng số CCCD (Natural Key) làm Khóa chính
+     trong bảng Dimension mà bắt buộc phải dùng Surrogate Key tự tăng?
+     Surrogate Key giúp giải quyết SCD Type 2 như thế nào?"
+
+  2. [MỚI - 11/08/2026] "Khi một giao dịch đang chạy mà bị treo hoặc thất bại giữa chừng,
+     database xử lý như thế nào? ROLLBACK hoạt động ra sao với WAL Log?"
 ```
+
+---
+
+## 🔁 LỊCH ÔN TẬP NGẮT QUÃNG
+| Khái niệm | Nguồn | Lần ôn cuối | Ôn tiếp theo | Streak | Trạng thái |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Idempotency & ETL fail-safe | [RESEARCH_07](file:///c:/Users/ACER/.gemini/antigravity/scratch/data-Engineer-mastery/00_HARDCORE_FOUNDATION/RESEARCH_07_ETL_FOUNDATION.md) | 2026-08-11 | 2026-08-18 | 1 | 🟡 Ôn lại sau 7 ngày |
+| Read Replica & CDC (OLTP→OLAP sync) | [MODULE_01_SUMMARY](file:///c:/Users/ACER/.gemini/antigravity/scratch/data-Engineer-mastery/01_DATA_WAREHOUSING_SQL/MODULE_01_SUMMARY.md#L53) | 2026-08-11 | 2026-08-18 | 1 | 🟡 Ôn lại sau 7 ngày |
+| Compute vs Storage (Spark vs SQL) | [RESEARCH_07](file:///c:/Users/ACER/.gemini/antigravity/scratch/data-Engineer-mastery/00_HARDCORE_FOUNDATION/RESEARCH_07_ETL_FOUNDATION.md) | 2026-08-11 | 2026-08-18 | 1 | 🟡 Ôn lại sau 7 ngày |
+| SSH Tunneling (-L vs -R) | [RESEARCH_05](file:///c:/Users/ACER/.gemini/antigravity/scratch/data-Engineer-mastery/00_HARDCORE_FOUNDATION/RESEARCH_05_NETWORKING.md) | 2026-08-11 | 2026-08-18 | 1 | 🟡 Ôn lại sau 7 ngày |
+| Cú pháp cron | [PROGRESS.md](file:///c:/Users/ACER/.gemini/antigravity/scratch/data-Engineer-mastery/PROGRESS.md#L25) | 2026-08-11 | 2026-08-18 | 1 | 🟡 Ôn lại sau 7 ngày |
+| HAVING vs WHERE & Execution Order | [MODULE_01_SUMMARY](file:///c:/Users/ACER/.gemini/antigravity/scratch/data-Engineer-mastery/01_DATA_WAREHOUSING_SQL/MODULE_01_SUMMARY.md#L30) | 2026-08-11 | 2026-08-18 | 1 | 🟡 Ôn lại sau 7 ngày |
+| Window Functions (Ranking, Lag/Lead) | [RESEARCH_02_WINDOW_FUNCTIONS.md](file:///c:/Users/ACER/.gemini/antigravity/scratch/data-Engineer-mastery/01_DATA_WAREHOUSING_SQL/RESEARCH_02_WINDOW_FUNCTIONS.md) | 2026-08-11 | 2026-08-18 | 3 | 🟡 Ôn lại sau 7 ngày |
+| WAL Log & Transaction Isolation | [RESEARCH_07](file:///c:/Users/ACER/.gemini/antigravity/scratch/data-Engineer-mastery/00_HARDCORE_FOUNDATION/RESEARCH_07_ETL_FOUNDATION.md) | 2026-08-11 | 2026-08-25 | 1 | 🟢 Mới học — ôn sau 14 ngày |
 
 ---
 
@@ -93,6 +113,9 @@ DATA ENGINEERING MASTERY — Trung tâm Dữ liệu Quốc gia
 | 2026-06-30 | M1/T1 | Ôn tập OLTP/OLAP, Star Schema, Execution Order | ✅ Hoàn thành |
 | 2026-07-02 | M1/T2 | Hoàn thành thực hành Lab 3 Challenges Window Functions | ✅ Hoàn thành |
 | 2026-07-02 | M1/T3 | Giao bài nghiên cứu Snowflake/Star Schema & SCD | ⏳ Đang nghiên cứu |
+| 2026-08-11 | ÔN TẬP | Phiên ôn tập kích hoạt lại 6 khái niệm bị quên (83 ngày gap) | ✅ Hoàn thành |
+| 2026-08-11 | ÔN TẬP | Sửa 3 câu trả lời sai trong RESEARCH_07 & MODULE_01_SUMMARY | ✅ Hoàn thành |
+| 2026-08-11 | MỚI | Học thêm: WAL Log tuần tự, ROLLBACK pending | 📌 Câu hỏi pending |
 
 ---
 

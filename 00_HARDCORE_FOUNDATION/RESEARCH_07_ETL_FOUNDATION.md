@@ -23,7 +23,18 @@ Cơ sở dữ liệu đang chứa một mớ dữ liệu "nửa nạc nửa mỡ
 
 Là một Senior Data Engineer, cậu sẽ thiết kế cơ chế/tư duy gì (không cần code, chỉ cần mô tả thuật toán) để script của cậu KHÔNG BAO GIỜ bơm đúp dữ liệu khi gặp sự cố sập nguồn này?
 *(Điền câu trả lời của cậu: ...)*
-nếu việc đồng bộ dữ liệu bị ngắt đột ngột, chúng ta sử dụng cron deamon giống như người thư kí theo dõi tiến trình nếu chưa thực hiện xong sẽ tiếp tục thực hiện mà ko chạy lại gây trùng lặp dư thừa
+
+> **[❌ Câu trả lời cũ — SAI về cơ chế — ghi lại để nhớ]**
+> ~~"sử dụng cron daemon giống như người thư kí theo dõi tiến trình nếu chưa thực hiện xong sẽ tiếp tục thực hiện"~~
+> **Tại sao sai:** Cron chỉ là đồng hồ báo thức — nó không biết script trước đó chạy đến đâu, thành công hay thất bại. Cron không thể phân biệt "đang chạy dở" với "chưa chạy lần nào".
+
+> **[✅ Đã hiểu lại — 11/08/2026]**
+> **Giải pháp: Staging Table + Atomic SWAP (mô hình Idempotency)**
+> 1. **LOAD vào bảng tạm (Staging Table):** KHÔNG bao giờ ghi thẳng vào bảng chính. Bơm toàn bộ dữ liệu mới vào `staging_table` trước.
+> 2. **Atomic SWAP:** Khi staging đầy đủ 100%, thực hiện một lệnh duy nhất `BEGIN ... RENAME TABLE staging → main ... COMMIT` để hoán đổi nguyên tử. Hoặc dùng `INSERT INTO main ... ON CONFLICT DO NOTHING` — dòng đã tồn tại thì bỏ qua, không insert lại.
+> 3. **Kết quả Idempotent:** Dù script bị chết và chạy lại 10 lần, bảng staging đều bị DROP và tạo lại từ đầu → thao tác SWAP là ALL-OR-NOTHING → không bao giờ có trạng thái "nửa nạc nửa mỡ".
+>
+> **❌ Cron không làm được điều này** — Cron là lịch trình, không phải giám sát viên tiến trình.
 ---
 *(Khi nộp bài, báo "Tôi đã sẵn sàng phòng thủ Task 07".)*
 --------------tranh luận-----------------
@@ -32,7 +43,22 @@ Cậu nói ETL là để tránh dữ liệu rác. Vậy tại sao các kỹ sư 
 bản raw data nếu nguồn thay đổi định dạng đột ngột, việc lưu trữ raw để so sánh được trước và sau khi thay đổi định dạng , thay vì kéo xử lý luôn, khi thay đổi định dạng đột ngột, ko biết được dữ liệu đổi từ định dạng nào sang định dạng nào để đánh giá; raw data còn có thể sử dụng lại khi dữ liệu có lỗi, làm hỏng đoạn dữ liệu thì có raw-data để thực hiện xử lý lại.
 🥊 Đòn 2: Sự sụp đổ của "All-in-SQL"
 Cậu có nhắc đến việc "thảm họa" khi dùng UPDATE/SELECT trực tiếp trong DB. Nhưng giả sử tôi nâng cấp CPU/RAM cho Database cực mạnh, tại sao việc vác 10TB dữ liệu ra ngoài chạy Python/Spark vẫn tối ưu hơn là dùng lệnh SQL xử lý ngay tại chỗ? Hãy giải thích dưới góc độ Tách rời Tính toán (Compute) và Lưu trữ (Storage).
-sql sẽ tập trung việc lưu trữ hơn là tính toán
+
+> **[❌ Câu trả lời cũ — ĐÚNG HƯỚNG nhưng quá nông — ghi lại để nhớ]**
+> ~~"sql sẽ tập trung việc lưu trữ hơn là tính toán"~~
+> **Tại sao chưa đủ:** Câu này đúng về ý, nhưng không giải thích được WHY và HOW. Trong phỏng vấn Senior, câu trả lời này sẽ không qua vòng 2.
+
+> **[✅ Đã hiểu lại — 11/08/2026]**
+> **Kiến trúc Tách rời Compute và Storage (Decoupled Architecture):**
+>
+> **Vấn đề của "All-in-SQL" dù phần cứng rất mạnh:**
+> - SQL Database (PostgreSQL, MySQL...) là kiến trúc **Single-Node** — dù nâng cấp đến đâu, vẫn chỉ là MỘT máy. Khi Transform 10TB, một máy không thể xử lý song song (parallel) được.
+> - CPU đang "vắt sức" chạy Transform → database **không thể phục vụ ứng dụng khác** đang cần đọc/ghi → toàn bộ hệ thống tê liệt.
+>
+> **Tại sao Spark/Python bên ngoài tốt hơn:**
+> - **Scale ngang (Horizontal Scaling):** Spark chạy trên cluster nhiều máy. Cần xử lý gấp đôi dữ liệu → thêm node vào cluster, không phải mua server siêu đắt.
+> - **Tách biệt trách nhiệm:** DB chỉ làm một việc: lưu trữ và serve queries. Spark chỉ làm một việc: tính toán. Mỗi thứ scale độc lập, không ảnh hưởng nhau.
+> - **Shared-Nothing Architecture:** Mỗi Spark worker xử lý phần dữ liệu của riêng nó, không share tài nguyên → không có bottleneck tập trung.
 
 🥊 Đòn 3: Trận chiến với Idempotency (Tính khả dĩ)
 Quay lại tình huống sập nguồn khi đang Load 50%. Cậu nói dùng "thư ký Cron" để theo dõi. Thực tế, Cron không làm được việc đó. Bây giờ, hãy tưởng tượng script Python của cậu bị chết giữa chừng. Khi chạy lại, làm sao cậu đảm bảo kết quả cuối cùng trong Database vẫn chuẩn 100%, không thiếu một dòng và không thừa một dòng, dù cậu có lỡ tay chạy script đó 10 lần liên tiếp? (Gợi ý: Hãy tìm hiểu từ khóa Idempotency hoặc cơ chế Staging Table/Atomic Swap).
