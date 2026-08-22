@@ -8,21 +8,15 @@
 ## 📍 VỊ TRÍ HIỆN TẠI
 ```
 MODULE:     1 — Data Warehousing & SQL Mastery
-TASK:       3 — Data Modeling Nâng cao (Snowflake vs Star, SCD)
-GIAI ĐOẠN:  RESEARCH (Học viên đang tự nghiên cứu)
-TRẠNG THÁI: Vừa hoàn thành phiên ôn tập 3 khái niệm Module 0 (11/08/2026).
-             Câu hỏi PENDING về Surrogate Key & SCD Type 2 chưa trả lời.
+TASK:       1.4-A — Index: Tại sao thiếu là "án tử" cho Data Warehouse
+GIAI ĐOẠN:  Đang ở Bước [4] Bài tập.
+TRẠNG THÁI: Hoàn thành lý thuyết Index. Chờ học viên thực hành SQL tối ưu truy vấn.
 
 FILE ĐANG THỰC HIỆN:
-  01_DATA_WAREHOUSING_SQL/RESEARCH_03_DATA_MODELING.md
+  01_DATA_WAREHOUSING_SQL/RESEARCH_04_QUERY_OPTIMIZATION.md
 
-CÂU HỎI ĐANG CHỜ TRẢ LỜI (PENDING):
-  1. "Tại sao Kimball khuyên tuyệt đối không dùng số CCCD (Natural Key) làm Khóa chính
-     trong bảng Dimension mà bắt buộc phải dùng Surrogate Key tự tăng?
-     Surrogate Key giúp giải quyết SCD Type 2 như thế nào?"
-
-  2. [MỚI - 11/08/2026] "Khi một giao dịch đang chạy mà bị treo hoặc thất bại giữa chừng,
-     database xử lý như thế nào? ROLLBACK hoạt động ra sao với WAL Log?"
+CÂU HỎI ĐANG CHỜ TRẢ LỜI (PENDING) - BẮT ĐẦU PHIÊN SAU TỪ ĐÂY:
+  "Thực hành: Dùng lệnh EXPLAIN QUERY PLAN để quan sát cách Database đổi từ Full Table Scan sang Index Scan."
 ```
 
 ---
@@ -59,10 +53,11 @@ DATA ENGINEERING MASTERY — Trung tâm Dữ liệu Quốc gia
 ├── 🔄 MODULE 1: Data Warehousing & SQL Mastery  ← ĐANG Ở ĐÂY
 │   ├── ✅ Task 1: DW Fundamentals (OLTP/OLAP, Star Schema, SQL cơ bản)
 │   ├── ✅ Task 2: Window Functions (Ranking, Lag/Lead, Windows)
-│   ├── ⏳ Task 3: Data Modeling (Snowflake, SCD Type 1/2/3) ← ĐANG LÀM
-│   └── 🔒 Task 4: Query Optimization (Index, EXPLAIN, Partition)
+│   ├── ✅ Task 3: Data Modeling (Snowflake, SCD Type 1/2/3, Surrogate Key)
+│   └── ⏳ Task 4: Query Optimization (Index, EXPLAIN, Partition) ← ĐANG LÀM
 │
 ├── 🔒 MODULE 2: Distributed Systems & Big Data
+│   ├── 🔒 Task 2.0: Medallion Architecture & Cloud Storage (MỚI)
 │   ├── 🔒 Hadoop Ecosystem (HDFS, YARN)
 │   ├── 🔒 Apache Spark Internals (DAG, Shuffling)
 │   └── 🔒 Storage Layer (Delta Lake, Iceberg)
@@ -73,7 +68,8 @@ DATA ENGINEERING MASTERY — Trung tâm Dữ liệu Quốc gia
 │
 ├── 🔒 MODULE 4: Orchestration & Data Quality
 │   ├── 🔒 Apache Airflow (DAG, Retry, Backfill)
-│   └── 🔒 Great Expectations (Data Quality Gate)
+│   ├── 🔒 Great Expectations (Data Quality Gate)
+│   └── 🔒 Task 4.6: dbt - Transform bằng SQL thuần (MỚI)
 │
 └── 🔒 MODULE 5: Security & Data Governance (Xuyên suốt)
     ├── 🔒 Encryption (At-rest & In-transit)
@@ -115,8 +111,13 @@ DATA ENGINEERING MASTERY — Trung tâm Dữ liệu Quốc gia
 | 2026-07-02 | M1/T3 | Giao bài nghiên cứu Snowflake/Star Schema & SCD | ⏳ Đang nghiên cứu |
 | 2026-08-11 | ÔN TẬP | Phiên ôn tập kích hoạt lại 6 khái niệm bị quên (83 ngày gap) | ✅ Hoàn thành |
 | 2026-08-11 | ÔN TẬP | Sửa 3 câu trả lời sai trong RESEARCH_07 & MODULE_01_SUMMARY | ✅ Hoàn thành |
-| 2026-08-11 | MỚI | Học thêm: WAL Log tuần tự, ROLLBACK pending | 📌 Câu hỏi pending |
-
+| 2026-08-11 | MỚI | Học thêm: WAL Log tuần tự, ROLLBACK pending | ✅ Đã giải đáp qua Audit |
+| 2026-08-11 | AUDIT | Kích hoạt Chế độ Hiệu trưởng. Học viên phân biệt được WAL (Write-optimized) vs SCD (Read-optimized) | ✅ PASS |
+| 2026-08-12 | M1/T3-A | Sửa lỗi tư duy Fact/Dimension. Đang học lý thuyết SCD Type 1, 2 | ⏳ Đang làm |
+| 2026-08-16 | M1/T3-A | Vượt qua bài kiểm tra thảm họa kiểm toán SCD Type 1. Hoàn thành Task 1.3-A | ✅ Hoàn thành |
+| 2026-08-19 | M1/T3-B | Bắt đầu Task 1.3-B. Phân tích kiến trúc Medallion (OLTP -> CDC -> OLAP). Chờ làm bài tập Star Schema | ⏳ Đang làm |
+| 2026-08-20 | M1/T3-B | Thiết kế bảng Fact. Vượt qua câu hỏi JOIN Star vs Snowflake (4 vs 6 joins). Hoàn thành Task 1.3-B | ✅ Hoàn thành |
+| 2026-08-21 | M1/T3-C | Viết SQL tạo SCD Type 2. Vượt qua bài kiểm tra Surrogate Key bảo vệ tính đúng đắn của lịch sử. Hoàn thành Task 3 | ✅ Hoàn thành |
 ---
 
 ## 📂 SƠ ĐỒ FILE (Tìm tài liệu nhanh)

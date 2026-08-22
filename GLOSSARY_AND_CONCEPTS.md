@@ -42,4 +42,18 @@ Một tên file chuẩn quốc gia phải đảm bảo:
    - Giúp phát hiện ngay lập tức nếu gói tin bị hacker sửa đổi hoặc giả mạo giữa đường.
 
 ---
+
+## 📂 MODULE 1: DATA WAREHOUSING & SQL MASTERY
+
+### 1. Thuật ngữ Tiếng Anh (English for Data Modeling)
+| Thuật ngữ | Phiên âm / Loại từ | Ý nghĩa chuyên ngành | Ngữ cảnh sử dụng |
+| :--- | :--- | :--- | :--- |
+| **Fact** | /fækt/ (n) | Sự kiện / Giao dịch | Dữ liệu định lượng (tiền, số lượng) và bất biến. Chứa trong Fact Table. |
+| **Dimension** | /daɪˈmen.ʃən/ (n) | Ngữ cảnh / Chiều | Thông tin miêu tả (ai, ở đâu, khi nào). Dùng để cắt lớp, phân tích Fact. |
+| **Normalize** | /ˈnɔː.mə.laɪz/ (v) | Chuẩn hóa | Quá trình chia nhỏ bảng để loại bỏ sự lặp lại dữ liệu (Snowflake dùng cách này). |
+| **Denormalize** | /diːˈnɔː.mə.laɪz/ (v) | Phi chuẩn hóa | Cố tình gộp bảng, chấp nhận lặp dữ liệu để giảm lệnh JOIN, tăng tốc query (Star dùng cách này). |
+| **Surrogate Key** | /ˈsʌr.ə.ɡət kiː/ (n) | Khóa thay thế | Khóa chính tự sinh (1,2,3...) của DWH, độc lập với hệ thống gốc, dùng để quản lý lịch sử. |
+| **Slowly Changing Dimension (SCD)** | /.../ (n) | Chiều thay đổi chậm | Kỹ thuật quản lý sự thay đổi của bảng Dimension theo thời gian (VD: đổi địa chỉ). |
+
+---
 *Kỷ luật ôn tập: Hãy dành 5 phút mỗi sáng để đọc lại bảng này trước khi bắt đầu bài tập mới.*
