@@ -8,15 +8,15 @@
 ## 📍 VỊ TRÍ HIỆN TẠI
 ```
 MODULE:     1 — Data Warehousing & SQL Mastery
-TASK:       1.4-A — Index: Tại sao thiếu là "án tử" cho Data Warehouse
-GIAI ĐOẠN:  Đang ở Bước [4] Bài tập.
-TRẠNG THÁI: Hoàn thành lý thuyết Index. Chờ học viên thực hành SQL tối ưu truy vấn.
+TASK:       1.4-C — EXPLAIN ANALYZE: Đọc bản đồ tư duy của Database
+GIAI ĐOẠN:  Đang ở Bước [1] Khởi động.
+TRẠNG THÁI: Hoàn thành Partitioning. Chờ học viên trả lời câu hỏi dẫn dắt vào bài mới.
 
 FILE ĐANG THỰC HIỆN:
   01_DATA_WAREHOUSING_SQL/RESEARCH_04_QUERY_OPTIMIZATION.md
 
 CÂU HỎI ĐANG CHỜ TRẢ LỜI (PENDING) - BẮT ĐẦU PHIÊN SAU TỪ ĐÂY:
-  "Thực hành: Dùng lệnh EXPLAIN QUERY PLAN để quan sát cách Database đổi từ Full Table Scan sang Index Scan."
+  "Tưởng tượng bạn là bác sĩ khám bệnh cho một câu lệnh SQL chạy quá chậm. Nếu bạn chỉ nhìn vào bề ngoài (câu SQL), bạn có biết nó đang 'đau' ở đâu không? Tại sao chúng ta cần một lệnh như EXPLAIN ANALYZE để chụp X-quang câu lệnh đó?"
 ```
 
 ---
@@ -118,6 +118,8 @@ DATA ENGINEERING MASTERY — Trung tâm Dữ liệu Quốc gia
 | 2026-08-19 | M1/T3-B | Bắt đầu Task 1.3-B. Phân tích kiến trúc Medallion (OLTP -> CDC -> OLAP). Chờ làm bài tập Star Schema | ⏳ Đang làm |
 | 2026-08-20 | M1/T3-B | Thiết kế bảng Fact. Vượt qua câu hỏi JOIN Star vs Snowflake (4 vs 6 joins). Hoàn thành Task 1.3-B | ✅ Hoàn thành |
 | 2026-08-21 | M1/T3-C | Viết SQL tạo SCD Type 2. Vượt qua bài kiểm tra Surrogate Key bảo vệ tính đúng đắn của lịch sử. Hoàn thành Task 3 | ✅ Hoàn thành |
+| 2026-08-23 | M1/T4-A | Giải thích B-Tree Index, EXPLAIN QUERY PLAN. Phân tích O(log n) vs O(n). Hoàn thành Task 1.4-A | ✅ Hoàn thành |
+| 2026-08-24 | M1/T4-B | Học Range/List Partition và Partition Pruning. Khai báo SQL PostgreSQL. Trả lời đúng cơ chế cắt giảm I/O. Hoàn thành Task 1.4-B | ✅ Hoàn thành |
 ---
 
 ## 📂 SƠ ĐỒ FILE (Tìm tài liệu nhanh)
