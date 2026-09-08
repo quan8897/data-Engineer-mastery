@@ -68,6 +68,7 @@ SELECT quy, SUM(doanh_so) AS tong_doanh_so
 FROM fact_sales
 GROUP BY quy
 HAVING tong_doanh_so > 1000000;
+
 Theo anh, câu lệnh này có chạy được trên các hệ quản trị cơ sở dữ liệu tiêu chuẩn (như PostgreSQL hay SQL Server) không?không
 Gợi ý: Nhìn lại thứ tự thực thi: HAVING chạy trước hay SELECT chạy trước? Liệu HAVING có nhìn thấy cái tên tong_doanh_so do SELECT đặt ra không? having chạy trước và chúng ko thể thấy tong_doanh_so từ select, nếu đúng phải là having sum(doanh_so)>1000000; với cột doanh số nằm trong bảng fact_sales
 >>

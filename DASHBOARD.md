@@ -7,16 +7,16 @@
 
 ## 📍 VỊ TRÍ HIỆN TẠI
 ```
-MODULE:     1 — Data Warehousing & SQL Mastery
-TASK:       1.4-C — EXPLAIN ANALYZE: Đọc bản đồ tư duy của Database
-GIAI ĐOẠN:  Đang ở Bước [1] Khởi động.
-TRẠNG THÁI: Hoàn thành Partitioning. Chờ học viên trả lời câu hỏi dẫn dắt vào bài mới.
+MODULE:     2 — Distributed Systems & Big Data
+TASK:       🔄 Task 2.2: YARN — Người điều phối tài nguyên Cluster
+GIAI ĐOẠN:  Học kiến trúc 4 thành phần (RM, NM, AM, Container) và luồng Submit Job.
+TRẠNG THÁI: Học viên đã nắm bản chất vai trò "cảnh sát giao thông" của YARN. Đang phân tích luồng Job Submission.
 
 FILE ĐANG THỰC HIỆN:
-  01_DATA_WAREHOUSING_SQL/RESEARCH_04_QUERY_OPTIMIZATION.md
+  02_DISTRIBUTED_SYSTEMS/RESEARCH_02_YARN.md
 
 CÂU HỎI ĐANG CHỜ TRẢ LỜI (PENDING) - BẮT ĐẦU PHIÊN SAU TỪ ĐÂY:
-  "Tưởng tượng bạn là bác sĩ khám bệnh cho một câu lệnh SQL chạy quá chậm. Nếu bạn chỉ nhìn vào bề ngoài (câu SQL), bạn có biết nó đang 'đau' ở đâu không? Tại sao chúng ta cần một lệnh như EXPLAIN ANALYZE để chụp X-quang câu lệnh đó?"
+  "Khi bạn submit 1 Job Spark lên cluster, Client sẽ gõ cửa ai đầu tiên? Và Container đầu tiên sinh ra để chứa thành phần nào (RM, NM, hay ApplicationMaster)?"
 ```
 
 ---
@@ -50,15 +50,15 @@ DATA ENGINEERING MASTERY — Trung tâm Dữ liệu Quốc gia
 │   ├── ✅ Task 7: ETL Foundation (Python pipeline, Idempotency)
 │   └── ✅ Task 8: DSA & Disk I/O (Generator/yield, Buffering, Parquet)
 │
-├── 🔄 MODULE 1: Data Warehousing & SQL Mastery  ← ĐANG Ở ĐÂY
+├── ✅ MODULE 1: Data Warehousing & SQL Mastery  (HOÀN THÀNH)
 │   ├── ✅ Task 1: DW Fundamentals (OLTP/OLAP, Star Schema, SQL cơ bản)
 │   ├── ✅ Task 2: Window Functions (Ranking, Lag/Lead, Windows)
 │   ├── ✅ Task 3: Data Modeling (Snowflake, SCD Type 1/2/3, Surrogate Key)
-│   └── ⏳ Task 4: Query Optimization (Index, EXPLAIN, Partition) ← ĐANG LÀM
+│   └── ✅ Task 4: Query Optimization (Index, EXPLAIN, Partition)
 │
-├── 🔒 MODULE 2: Distributed Systems & Big Data
-│   ├── 🔒 Task 2.0: Medallion Architecture & Cloud Storage (MỚI)
-│   ├── 🔒 Hadoop Ecosystem (HDFS, YARN)
+├── 🔄 MODULE 2: Distributed Systems & Big Data  ← ĐANG Ở ĐÂY
+│   ├── ✅ Task 2.0: Medallion Architecture & Cloud Storage
+│   ├── 🔄 Task 2.1: Hadoop Ecosystem (HDFS, YARN)  ← TIẾP THEO
 │   ├── 🔒 Apache Spark Internals (DAG, Shuffling)
 │   └── 🔒 Storage Layer (Delta Lake, Iceberg)
 │
@@ -86,6 +86,17 @@ DATA ENGINEERING MASTERY — Trung tâm Dữ liệu Quốc gia
 2. Nếu **chưa có bài nộp** → Đọc lại `CÂU HỎI ĐANG CHỜ`. Dừng lại.
 3. Nếu **có bài nộp mới** → Chạy: **Acknowledge → Attack → Direct → Wait**
 4. Kết thúc bằng đúng **một câu hỏi** → Ghi vào `PENDING`
+
+### 🧠 Framework 5 Tầng Hiểu Sâu (BẮTBUỘC áp dụng khi dạy BẤT KỂ khái niệm nào):
+```
+Tầng 1 — WHAT     : Nó là gì? (Định nghĩa 1 câu + ví dụ thực tế)
+Tầng 2 — HOW      : Dùng nó thế nào? (Cú pháp / cơ chế / code)
+Tầng 3 — WHY      : Tại sao cần nó? (Vấn đề giải quyết, so sánh không có nó)
+Tầng 4 — FAILURE  : Nó fail như thế nào? (Điều kiện sụp đổ, ví dụ thất bại thực tế)
+Tầng 5 — TRADE-OFF : Khi nào KHÔNG dùng? (Chi phí ẩn, giải pháp thay thế)
+```
+> Chi tiết → xem `STUDY_SCHEDULE.md` phần **FRAMEWORK 5 TẦNG HIỂU SÂU**
+> Câu hỏi kiểm tra PHẢI cover ít nhất Tầng 3 (WHY) và Tầng 4 (FAILURE)
 
 ### Cuối mỗi ngày học (học viên tự cập nhật hoặc yêu cầu Mentor cập nhật):
 - Cập nhật `TRẠNG THÁI` trong `VỊ TRÍ HIỆN TẠI`
@@ -120,6 +131,9 @@ DATA ENGINEERING MASTERY — Trung tâm Dữ liệu Quốc gia
 | 2026-08-21 | M1/T3-C | Viết SQL tạo SCD Type 2. Vượt qua bài kiểm tra Surrogate Key bảo vệ tính đúng đắn của lịch sử. Hoàn thành Task 3 | ✅ Hoàn thành |
 | 2026-08-23 | M1/T4-A | Giải thích B-Tree Index, EXPLAIN QUERY PLAN. Phân tích O(log n) vs O(n). Hoàn thành Task 1.4-A | ✅ Hoàn thành |
 | 2026-08-24 | M1/T4-B | Học Range/List Partition và Partition Pruning. Khai báo SQL PostgreSQL. Trả lời đúng cơ chế cắt giảm I/O. Hoàn thành Task 1.4-B | ✅ Hoàn thành |
+| 2026-08-25 | M1/T4-C | EXPLAIN vs EXPLAIN ANALYZE. BEGIN/ROLLBACK để X-quang DELETE an toàn. Đọc output Seq Scan, phát hiện ảo tưởng Statistics, kê đơn ANALYZE + INDEX. Hoàn thành Task 1.4-C & toàn bộ Module 1 | ✅ Hoàn thành |
+| 2026-09-02 | M2/T2.0 | Medallion Architecture: Bronze/Silver/Gold. Parquet open format. Storage-compute separation. Thiết kế 3 layer cho Bộ Nội Vụ 63 tỉnh. Validation rules Silver layer. | ✅ Hoàn thành |
+| 2026-09-07 | M2/T2.1 | HDFS: NameNode/DataNode, Block size, Replication Factor. Tính toán dung lượng cho 800GB dân số. Phân tích Small Files Problem & cạn kiệt RAM NameNode. Hoàn thành Task 2.1 | ✅ Hoàn thành |
 ---
 
 ## 📂 SƠ ĐỒ FILE (Tìm tài liệu nhanh)
@@ -127,6 +141,7 @@ DATA ENGINEERING MASTERY — Trung tâm Dữ liệu Quốc gia
 ```
 data-Engineer-mastery/
 ├── DASHBOARD.md                        ← FILE NÀY (Đọc đầu tiên)
+├── HABIT_TRACKER.md                    ← BẢNG KỶ LUẬT THÉP & CHECK-IN HÀNG NGÀY
 ├── .MENTOR_CONTEXT.md                  ← Luật & vai trò của Mentor
 ├── MASTERY_PLAN.md                     ← Lộ trình tổng thể & cam kết
 ├── GLOSSARY_AND_CONCEPTS.md           ← Từ điển thuật ngữ

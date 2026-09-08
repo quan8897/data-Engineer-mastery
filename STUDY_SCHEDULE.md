@@ -13,10 +13,43 @@
 ```
 [1] ÔN TẬP 5 PHÚT  → AI hỏi 1 câu về bài cũ. Học viên trả lời không cần tra.
 [2] MỤC TIÊU       → Đọc to phần "Sau bài này tôi CÓ THỂ..."
-[3] HỌC            → Feynman: học viên giải thích, AI phản biện
+[3] HỌC (5 TẦNG)   → Áp dụng Framework 5 Tầng Hiểu Sâu (xem bên dưới)
 [4] BÀI TẬP        → Học viên làm, AI không gợi ý trước khi học viên thử
 [5] KIỂM TRA       → AI hỏi câu kiểm tra cuối. Phải trả lời KHÔNG tra cứu.
 [6] CẬP NHẬT       → Ghi vào DASHBOARD.md
+```
+
+### 🧠 FRAMEWORK 5 TẦNG HIỂU SÂU (Áp dụng cho MỌI khái niệm — học mới VÀ ôn tập)
+
+> **Quy tắc:** AI Mentor PHẢI dạy theo đúng thứ tự 5 tầng này. Không được bỏ tầng nào.
+> Khi ôn tập: AI bắt đầu từ tầng mà học viên đang yếu nhất.
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  Tầng 1 — WHAT   : Nó là gì?                                │
+│  → Định nghĩa 1 câu. Ví dụ thực tế. Không dùng thuật ngữ.  │
+│                                                              │
+│  Tầng 2 — HOW    : Dùng nó thế nào?                         │
+│  → Cú pháp / Cơ chế hoạt động. Code minh họa.               │
+│                                                              │
+│  Tầng 3 — WHY    : Tại sao cần nó?                          │
+│  → Vấn đề nó giải quyết. So sánh với cách làm không có nó.  │
+│                                                              │
+│  Tầng 4 — FAILURE: Nó fail như thế nào?                     │
+│  → Điều kiện nào làm nó sụp đổ. Ví dụ thực tế về thất bại. │
+│                                                              │
+│  Tầng 5 — TRADE-OFF: Khi nào KHÔNG nên dùng nó?            │
+│  → Chi phí ẩn. Giải pháp thay thế tốt hơn trong ngữ cảnh X. │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Ví dụ áp dụng với B-Tree Index:**
+```
+Tầng 1 — WHAT    : Cấu trúc cây nhị phân giúp tìm kiếm dữ liệu O(log n)
+Tầng 2 — HOW     : CREATE INDEX idx_cccd ON fact_chi_tra(cccd);
+Tầng 3 — WHY     : Không có Index → Full Scan 1 tỷ dòng. Có Index → 30 bước
+Tầng 4 — FAILURE : Cardinality thấp (cột gender 2 giá trị) → Index vô dụng
+Tầng 5 — TRADE-OFF: Bảng ghi nhiều hơn đọc → Index làm chậm INSERT, nên bỏ
 ```
 
 ### Vai trò mở rộng của AI Mentor (Học viên có thể yêu cầu bất cứ lúc nào):
@@ -34,6 +67,7 @@ Học viên có thể yêu cầu AI đổi vai trò bằng câu: *"Hãy đóng v
 - Mỗi task có **Xây dựng từ** → biết cần ôn gì trước
 - Mỗi task có **Kết nối tương lai** → biết học cái này để làm gì sau
 - Câu hỏi kiểm tra LUÔN yêu cầu kết hợp kiến thức CŨ + MỚI
+- Câu hỏi kiểm tra PHẢI bao phủ ít nhất Tầng 3 (WHY) và Tầng 4 (FAILURE) trong Framework 5 Tầng
 
 ---
 
@@ -94,6 +128,22 @@ Học viên có thể yêu cầu AI đổi vai trò bằng câu: *"Hãy đóng v
 | **5** | Security & Governance | 4 | ~2 tuần | 🔒 |
 | **6** | Cloud & Certification | 5 | ~4 tuần | 🔒 |
 
+> [!IMPORTANT]
+> **🔒 SECURITY-BY-DESIGN (Threading xuyên suốt):** Security KHÔNG phải module học một lần rồi thôi.
+> Mỗi task từ Module 1 trở đi đều có câu hỏi bắt buộc: *"Nếu dữ liệu này chứa PII, cậu sẽ làm gì khác?"*
+> - **Module 1:** Ai được phép query bảng nào? (RBAC cơ bản, Row-Level Security)
+> - **Module 2:** File Parquet trên S3 — encrypt at-rest, IAM policy, bucket policy
+> - **Module 3:** Kafka topic — authentication, TLS in-transit, access control
+> - **Module 4:** Airflow DAG — secret management, không hardcode password
+> - **Module 5:** Tổng hợp + audit trail, compliance, data masking PII
+
+> [!WARNING]
+> **📊 GAP — OBSERVABILITY CHƯA CÓ TRONG ROADMAP:**
+> Alerting, logging tập trung, SLA tracking, data freshness monitoring — chưa được cover.
+> Tạm thời bổ sung vào Task 4.1 (Airflow): học thêm DAG alerting + SLA miss callback.
+> Task 4.2 (Great Expectations): thêm phần data freshness check.
+> Roadmap update đầy đủ sau khi hoàn thành Module 4.
+
 ---
 
 # ✅ MODULE 0: THE HARDCORE FOUNDATION
@@ -125,6 +175,17 @@ Task 0.5 (SSH Tunneling)       →  Task 5.1 (Encryption in-transit: TLS là phi
 Task 0.6 (Cron + Idempotency)  →  Task 4.1 (Airflow là Cron thông minh + retry + lineage)
 Task 0.7 (Staging SWAP + CDC)  →  Task 2.0 (Medallion Bronze layer) + Task 3.4 (Debezium CDC)
 Task 0.8 (Generator + Parquet) →  Task 2.3 (Spark Lazy Evaluation) + Task 2.6 (Parquet columnar)
+
+[SECURITY THREAD — hỏi ở MỌI task từ đây trở đi]
+Task 1.x (SQL/DWH)             →  Ai được phép đọc bảng này? Row-Level Security?
+Task 2.x (HDFS/Spark/S3)       →  File này có PII không? S3 bucket policy? Encrypt at-rest?
+Task 3.x (Kafka/CDC)           →  Topic có sensitive data? TLS? Authentication?
+Task 4.x (Airflow/dbt)         →  Password/key lưu ở đâu? Secret manager? Alerting khi fail?
+Task 5.x (Security)            →  Audit trail, RBAC toàn hệ thống, PII masking, compliance
+
+[OBSERVABILITY — bổ sung vào Task 4.1 + 4.2]
+Task 4.1 (Airflow)             →  +DAG alerting, SLA miss callback, on_failure_callback
+Task 4.2 (Great Expectations)  →  +Data freshness check, schema drift detection
 ```
 
 ---
