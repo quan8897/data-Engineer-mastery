@@ -27,8 +27,8 @@
 | Ngày | Thứ | Deep Work (DW) | 5 Tầng (5T) | Git/File (GIT) | Ôn tập (SR) | Ghi chú / Task hoàn thành | Streak |
 | :---: | :---: | :---: | :---: | :---: | :---: | :--- | :---: |
 | **07/09** | T2 | [x] | [x] | [x] | [x] | Hoàn thành Task 2.1 HDFS & Khởi động Task 2.2 YARN | 🔥 1 |
-| **08/09** | T3 | [ ] | [ ] | [ ] | [ ] | Task 2.2: YARN Architecture (RM, NM, AM, Container) | |
-| **09/09** | T4 | [ ] | [ ] | [ ] | [ ] | Task 2.2: YARN Schedulers (FIFO vs Capacity vs Fair) | |
+| **08/09** | T3 | [x] | [x] | [x] | [x] | Hoàn thành Task 2.2: YARN Architecture & Schedulers | 🔥 2 |
+| **09/09** | T4 | [ ] | [ ] | [ ] | [ ] | Khởi động Task 2.3: Spark Core Internals (RDD, Lazy Eval) | |
 | **10/09** | T5 | [ ] | [ ] | [ ] | [ ] | Task 2.3: Spark Core Internals (RDD, Immutability) | |
 | **11/09** | T6 | [ ] | [ ] | [ ] | [ ] | Task 2.3: Spark Transformations (Narrow vs Wide) | |
 | **12/09** | T7 | [ ] | [ ] | [ ] | [ ] | Task 2.3: Spark DAG & Execution Plan | |

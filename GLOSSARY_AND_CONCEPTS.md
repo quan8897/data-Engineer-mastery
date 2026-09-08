@@ -56,4 +56,35 @@ Một tên file chuẩn quốc gia phải đảm bảo:
 | **Slowly Changing Dimension (SCD)** | /.../ (n) | Chiều thay đổi chậm | Kỹ thuật quản lý sự thay đổi của bảng Dimension theo thời gian (VD: đổi địa chỉ). |
 
 ---
-*Kỷ luật ôn tập: Hãy dành 5 phút mỗi sáng để đọc lại bảng này trước khi bắt đầu bài tập mới.*
+
+## 📂 MODULE 2: DISTRIBUTED SYSTEMS & BIG DATA
+
+### 1. Thuật ngữ Tiếng Anh HDFS (Distributed Storage)
+| Thuật ngữ | Phiên âm / Loại từ | Ý nghĩa chuyên ngành | Ngữ cảnh sử dụng |
+| :--- | :--- | :--- | :--- |
+| **Distributed Storage** | /dɪˈstrɪb.juː.tɪd ˈstɔː.rɪdʒ/ (n) | Lưu trữ phân tán | Lưu một file lớn trên nhiều máy tính khác nhau thay vì 1 ổ cứng đơn. |
+| **Metadata** | /ˈmet.əˌdeɪ.tə/ (n) | Siêu dữ liệu | Dữ liệu mô tả dữ liệu (tên file, quyền, ánh xạ file → block → DataNode). |
+| **Replication Factor** | /ˌrep.lɪˈkeɪ.ʃən ˈfæk.tər/ (n) | Hệ số nhân bản | Số lượng bản sao lưu của mỗi block (mặc định là 3). |
+| **Fault Tolerance** | /ˈfɒlt ˌtɒl.ər.əns/ (n) | Khả năng chịu lỗi | Hệ thống vẫn chạy bình thường khi có máy bay màu/hỏng hóc phần cứng. |
+| **Single Point of Failure (SPOF)** | /ˌsɪŋ.ɡəl pɔɪnt əv ˈfeɪ.ljər/ (n) | Điểm hỏng duy nhất | Thành phần nếu chết thì kéo sập cả hệ thống (như NameNode đơn lẻ). |
+| **Heartbeat** | /ˈhɑːt.biːt/ (n) | Tín hiệu nhịp tim | Bản tin định kỳ (3s) DataNode gửi NameNode để báo "tôi vẫn còn sống". |
+| **Self-healing** | /ˌselfˈhiː.lɪŋ/ (adj/n) | Tự phục hồi / Tự chữa lành | Khả năng tự động nhân bản lại các block bị thiếu khi 1 node chết. |
+| **Small Files Problem** | /smɔːl faɪlz ˈprɒb.ləm/ (n) | Vấn nạn file nhỏ | Quá nhiều file nhỏ gây cạn kiệt RAM NameNode dù đĩa cứng còn trống. |
+| **Compaction** | /kəmˈpæk.ʃən/ (n) | Gom nén file | Kỹ thuật gộp hàng nghìn file nhỏ thành file lớn (128MB-512MB) để cứu RAM. |
+| **Commodity Hardware** | /kəˈmɒd.ə.ti ˈhɑːd.weər/ (n) | Phần cứng phổ thông | Các máy tính tiêu chuẩn giá rẻ được dùng để ghép thành cluster (Scale-out). |
+
+### 2. Thuật ngữ Tiếng Anh YARN (Resource Management)
+| Thuật ngữ | Phiên âm / Loại từ | Ý nghĩa chuyên ngành | Ngữ cảnh sử dụng |
+| :--- | :--- | :--- | :--- |
+| **Resource Negotiator** | /ˈriː.zɔːs nɪˈɡəʊ.ʃi.eɪ.tər/ (n) | Người điều phối tài nguyên | Hệ thống đứng ra thương lượng và cấp phát CPU/RAM giữa các ứng dụng. |
+| **Multi-tenancy** | /ˈmʌl.ti ˈten.ən.si/ (n) | Đa người thuê / Dùng chung | Nhiều đội nhóm/ứng dụng (Spark, Flink, SQL) cùng chạy trên 1 cluster. |
+| **Resource Allocation** | /ˈriː.zɔːs ˌæl.əˈkeɪ.ʃən/ (n) | Cấp phát tài nguyên | Hành động RM và NM chia một lượng vCPU và RAM cụ thể cho Job. |
+| **Starvation** | /stɑːˈveɪ.ʃən/ (n) | Hiện tượng "chết đói" | Tình trạng Job nhỏ bị nghẽn vô thời hạn do Job lớn chiếm hết tài nguyên (FIFO). |
+| **Fair Scheduling** | /feər ˈskedʒ.uː.lɪŋ/ (n) | Điều phối công bằng | Thuật toán chia đều tài nguyên để mọi job đều có tài nguyên chạy song song. |
+| **Preemption** | /priˈemp.ʃən/ (n) | Thu hồi cưỡng chế | YARN tịch thu bớt tài nguyên từ job thừa để cứu job đang thiếu. |
+| **Load Balancing** | /ˈləʊd ˌbæl.ən.sɪŋ/ (n) | Cân bằng tải | Rải đều công việc lên các node, tránh node làm không hết, node ngồi chơi. |
+| **Throughput** | /ˈθruː.pʊt/ (n) | Băng thông / Khối lượng xử lý | Lượng dữ liệu hệ thống xử lý được trong 1 giây/1 phút (HDFS thiên về throughput). |
+| **Latency** | /ˈleɪ.tən.si/ (n) | Độ trễ phản hồi | Thời gian từ lúc gửi yêu cầu đến khi có kết quả (OLTP cần low-latency). |
+
+---
+*Kỷ luật ôn tập: Dành 5 phút mỗi ngày đọc to phát âm và giải thích nghĩa để biến từ vựng chuyên ngành thành phản xạ tự nhiên.*

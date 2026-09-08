@@ -8,15 +8,16 @@
 ## 📍 VỊ TRÍ HIỆN TẠI
 ```
 MODULE:     2 — Distributed Systems & Big Data
-TASK:       🔄 Task 2.2: YARN — Người điều phối tài nguyên Cluster
-GIAI ĐOẠN:  Học kiến trúc 4 thành phần (RM, NM, AM, Container) và luồng Submit Job.
-TRẠNG THÁI: Học viên đã nắm bản chất vai trò "cảnh sát giao thông" của YARN. Đang phân tích luồng Job Submission.
+TASK:       🔄 Task 2.3: Apache Spark Internals — RDD, Lazy Evaluation & DAG
+GIAI ĐOẠN:  Đang học cơ chế Resilient của RDD và triết lý Lazy Evaluation.
+TRẠNG THÁI: Học viên đã nắm bản chất In-Memory Computing của Spark vs MapReduce. Đang đào sâu cơ chế chịu lỗi của RDD và phân biệt Transformation vs Action.
 
 FILE ĐANG THỰC HIỆN:
-  02_DISTRIBUTED_SYSTEMS/RESEARCH_02_YARN.md
+  02_DISTRIBUTED_SYSTEMS/RESEARCH_03_SPARK_INTERNALS.md
 
 CÂU HỎI ĐANG CHỜ TRẢ LỜI (PENDING) - BẮT ĐẦU PHIÊN SAU TỪ ĐÂY:
-  "Khi bạn submit 1 Job Spark lên cluster, Client sẽ gõ cửa ai đầu tiên? Và Container đầu tiên sinh ra để chứa thành phần nào (RM, NM, hay ApplicationMaster)?"
+  "1. RAM mất điện là mất dữ liệu, vậy chữ 'Resilient' (kiên cường) của RDD hoạt động thế nào để tự hồi phục dữ liệu khi 1 máy bị sập?
+   2. Tại sao khi bạn gọi liên tục 10 lệnh Transformation (map, filter), Spark lại 'lười biếng' không chạy ngay mà chờ đến khi gặp Action (count, show) mới thực thi?"
 ```
 
 ---
@@ -134,6 +135,7 @@ Tầng 5 — TRADE-OFF : Khi nào KHÔNG dùng? (Chi phí ẩn, giải pháp tha
 | 2026-08-25 | M1/T4-C | EXPLAIN vs EXPLAIN ANALYZE. BEGIN/ROLLBACK để X-quang DELETE an toàn. Đọc output Seq Scan, phát hiện ảo tưởng Statistics, kê đơn ANALYZE + INDEX. Hoàn thành Task 1.4-C & toàn bộ Module 1 | ✅ Hoàn thành |
 | 2026-09-02 | M2/T2.0 | Medallion Architecture: Bronze/Silver/Gold. Parquet open format. Storage-compute separation. Thiết kế 3 layer cho Bộ Nội Vụ 63 tỉnh. Validation rules Silver layer. | ✅ Hoàn thành |
 | 2026-09-07 | M2/T2.1 | HDFS: NameNode/DataNode, Block size, Replication Factor. Tính toán dung lượng cho 800GB dân số. Phân tích Small Files Problem & cạn kiệt RAM NameNode. Hoàn thành Task 2.1 | ✅ Hoàn thành |
+| 2026-09-08 | M2/T2.2 | YARN: RM, NM, AM, Container. Phân bổ tài nguyên 5 node, so sánh FIFO vs Fair Scheduler, luồng thu hồi Container. Hoàn thành Task 2.2 | ✅ Hoàn thành |
 ---
 
 ## 📂 SƠ ĐỒ FILE (Tìm tài liệu nhanh)
