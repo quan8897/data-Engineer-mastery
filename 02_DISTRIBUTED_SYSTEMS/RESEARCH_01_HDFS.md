@@ -6,6 +6,15 @@
 
 ---
 
+## 🎯 Mục tiêu đầu ra (Learning Outcomes)
+Hoàn thành bài này, bạn phải đạt được các năng lực cốt lõi:
+1. **Tư duy Scale-out:** Giải thích được vì sao Scale-out (dùng hàng trăm commodity servers) tối ưu chi phí và mở rộng tốt hơn Scale-up (mua siêu máy chủ đắt đỏ) khi dữ liệu đạt quy mô Big Data.
+2. **Kiến trúc Master-Worker:** Phân biệt rõ trách nhiệm của **NameNode** (quản lý metadata, namespace trong RAM) và **DataNode** (lưu trữ các block dữ liệu vật lý trên ổ cứng).
+3. **Cơ chế Block & Replication:** Hiểu sâu tại sao HDFS chọn Block Size lớn (128MB) và Replication Factor = 3 để đảm bảo khả năng chịu lỗi (Fault-Tolerance) và tối ưu băng thông đọc tuần tự (Sequential I/O).
+4. **Vận hành & Giới hạn:** Nhận diện điểm yếu SPOF (Single Point of Failure), cơ chế HA (Active-Standby), bài toán "Small Files Problem" và hiểu rõ bối cảnh vì sao Cloud Object Storage (S3, GCS) đang dần thay thế HDFS on-premise.
+
+---
+
 ## 🧠 Framework 5 Tầng — HDFS
 
 ### Tầng 1 — WHAT

@@ -6,6 +6,15 @@
 
 ---
 
+## 🎯 Mục tiêu đầu ra (Learning Outcomes)
+Hoàn thành bài này, bạn phải đạt được các năng lực cốt lõi:
+1. **Bản chất điều phối tài nguyên:** Hiểu sâu vai trò của YARN như một "Hệ điều hành cụm" (Cluster OS), tách biệt hoàn toàn giữa lưu trữ (HDFS) và tính toán (Compute), hỗ trợ đa ứng dụng cùng lúc (Multi-tenancy).
+2. **Mental Model & Vòng đời Job:** Thuộc lòng 4 thành phần (RM, NM, AM, Container) qua hình ảnh "Bất động sản"; vẽ và giải thích được 6 bước trong Job Lifecycle từ submit đến thu hồi Container.
+3. **Cơ chế chịu lỗi (Fault-Tolerance):** Phân tích được các kịch bản hỏng hóc (NodeManager sập, AM sập, RM sập) và cách hệ thống tự khôi phục mà không làm mất trạng thái cả cụm.
+4. **Tính toán & Tối ưu Container:** Hiểu cách cấu hình CPU/RAM (vCPU, yarn.nodemanager.resource.memory-mb) để tối ưu công suất phần cứng, tránh lãng phí hoặc gây OOM container.
+
+---
+
 ## 🔗 Kết nối kiến thức cũ
 
 ```

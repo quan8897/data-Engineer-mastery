@@ -40,7 +40,7 @@
 | **18/09** | T6 | [ ] | [ ] | [ ] | [ ] | Task 2.6: Storage Layer (Parquet Deep Dive) | |
 | **19/09** | T7 | [ ] | [ ] | [ ] | [ ] | Task 2.6: Partitioning & Bucketing tối ưu I/O | |
 | **20/09** | CN | [ ] | [ ] | [ ] | [ ] | Tổng kết tuần & Audit chéo Module 1 + 2 | |
-| **21/09** | T2 | [ ] | [ ] | [ ] | [ ] | Task 2.7: Delta Lake / Iceberg (ACID on Object Storage)| |
+| **21/09** | T2 | [x] | [x] | [x] | [x] | Hoàn thành Task 2.4 Storage Layer (Delta Lake, Z-Order, CoW) & ĐÓNG MODULE 2 | 🔥 3 |
 | **22/09** | T3 | [ ] | [ ] | [ ] | [ ] | Task 2.7: Time Travel & Schema Evolution | |
 | **23/09** | T4 | [ ] | [ ] | [ ] | [ ] | Task 2.8: Tối ưu hoá Delta Lake (Compaction, Z-Order) | |
 | **24/09** | T5 | [ ] | [ ] | [ ] | [ ] | Lab Thực chiến Big Data 63 tỉnh quy mô TB | |

@@ -19,6 +19,11 @@
 [6] CẬP NHẬT       → Ghi vào DASHBOARD.md
 ```
 
+### 🇺🇸 QUY TẮC TIẾNG ANH & BẢO TOÀN BÀI TẬP (BẮT BUỘC):
+1. **Tiếng Anh Chuyên Ngành (English-in-Tech):** Mọi thuật ngữ tiếng Anh BẮT BUỘC phải kèm **Phiên âm IPA chuẩn** + **Nghĩa đen đời thường** (để bẻ khóa trực quan) + **Nghĩa kỹ thuật**.
+2. **Tôn trọng bài tập của học viên:** AI Mentor TUYỆT ĐỐI KHÔNG tự động ghi đè đáp án vào template của học viên (`RESEARCH_*.md`). Học viên phải tự điền bằng tư duy của mình. AI Mentor chỉ gợi ý, phản biện và chấm điểm.
+
+
 ### 🧠 FRAMEWORK 5 TẦNG HIỂU SÂU (Áp dụng cho MỌI khái niệm — học mới VÀ ôn tập)
 
 > **Quy tắc:** AI Mentor PHẢI dạy theo đúng thứ tự 5 tầng này. Không được bỏ tầng nào.

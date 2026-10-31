@@ -6,6 +6,15 @@
 
 ---
 
+## 🎯 Mục tiêu đầu ra (Learning Outcomes)
+Hoàn thành bài này, bạn phải đạt được các năng lực cốt lõi:
+1. **Tư duy Kiến trúc Lakehouse:** Hiểu vì sao Data Lakehouse kết hợp được ưu điểm của Data Warehouse (ACID, schema enforcement, hiệu năng BI) và Data Lake (lưu trữ chi phí thấp, định dạng mở, phục vụ AI/ML).
+2. **Làm chủ 3 tầng Medallion:** Phân biệt rõ mục đích, tiêu chuẩn dữ liệu và đối tượng sử dụng của **Bronze** (Raw/Append-only), **Silver** (Cleaned/Enriched/Conformed), và **Gold** (Aggregated/Business Metrics).
+3. **Quản trị chất lượng & Bất biến:** Nắm vững nguyên tắc Immutability ở tầng Bronze (Single Source of Truth) để phục vụ tái xử lý (Reprocessing/Audit) khi logic chuyển đổi thay đổi.
+4. **Nhận diện Anti-patterns:** Nhận biết các lỗi thiết kế phổ biến khiến Medallion sụp đổ (bỏ qua Silver nhảy thẳng sang Gold, biến Bronze thành bãi rác không dọn, hoặc over-engineering cho các dự án quy mô nhỏ).
+
+---
+
 ## 🧠 Framework 5 Tầng — Medallion Architecture
 
 ### Tầng 1 — WHAT

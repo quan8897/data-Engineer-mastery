@@ -30,5 +30,18 @@
     - *Thành tựu:* Tự tay thiết kế pipeline ETL mini bằng Python (không dùng thư viện ngoài). Hiểu về tính bất biến của dữ liệu Raw, cơ chế lọc lỗi (Validation) và ghi log audit (`error_rows.log`). Bước đầu chạm tay vào khái niệm **Idempotency** (Tính khả dĩ) - yếu tố sống còn của một hệ thống dữ liệu tin cậy.
     - *Ngày hoàn thành:* 2026-04-07
 
+## ✅ MODULE 1: DATA WAREHOUSING & SQL MASTERY
+- [x] **Task 1: DW Fundamentals & Star Schema.** (2026-06-30)
+- [x] **Task 2: Window Functions Mastery (Ranking, Windows, Lag/Lead).** (2026-07-02)
+- [x] **Task 3: Data Modeling — Snowflake, SCD Type 1/2/3, Surrogate Key.** (2026-08-21)
+- [x] **Task 4: Query Optimization — Index, Partitioning, EXPLAIN ANALYZE.** (2026-08-25)
+
+## ✅ MODULE 2: DISTRIBUTED SYSTEMS & BIG DATA
+- [x] **Task 2.0: Medallion Architecture (Bronze/Silver/Gold) & Separation of Compute/Storage.** (2026-09-02)
+- [x] **Task 2.1: Hadoop Ecosystem — HDFS Internals, NameNode/DataNode, Small Files Problem.** (2026-09-07)
+- [x] **Task 2.2: YARN — Resource Negotiator, Schedulers & Resource Allocation.** (2026-09-08)
+- [x] **Task 2.3: Apache Spark Internals — RDD Lineage, Catalyst Optimizer, DAG, Shuffling & OOM/Data Skew.** (2026-09-18)
+- [x] **Task 2.4: Modern Storage Layer — Delta Lake & Apache Iceberg, Transaction Log (`_delta_log`), Copy-on-Write, Compaction (`OPTIMIZE`), Z-Ordering đa chiều, Time Travel (`RESTORE`).** (2026-09-21)
+
 ---
-*Mentor Note: "Từ một người bốc vác dữ liệu (Data Mover), cậu đã bắt đầu trở thành một người thợ tinh chế dữ liệu (Data Refiner). Đừng dừng lại ở file CSV, thế giới SQL và Big Data đang chờ phía trước!"*
+*Mentor Note: "Chúc mừng bạn đã chính thức chinh phục trọn vẹn 2 cột trụ khổng lồ: Data Warehousing và Distributed Big Data Computing. Bạn đã hiểu sâu sắc cách máy tính phân tán lưu trữ và xử lý hàng tỷ dòng dữ liệu với chuẩn ACID Lakehouse. Cửa ải tiếp theo: Thế giới Real-time Streaming với Apache Kafka đang mở ra!"*

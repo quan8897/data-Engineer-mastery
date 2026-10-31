@@ -7,17 +7,16 @@
 
 ## 📍 VỊ TRÍ HIỆN TẠI
 ```
-MODULE:     2 — Distributed Systems & Big Data
-TASK:       🔄 Task 2.3: Apache Spark Internals — RDD, Lazy Evaluation & DAG
-GIAI ĐOẠN:  Đang học cơ chế Resilient của RDD và triết lý Lazy Evaluation.
-TRẠNG THÁI: Học viên đã nắm bản chất In-Memory Computing của Spark vs MapReduce. Đang đào sâu cơ chế chịu lỗi của RDD và phân biệt Transformation vs Action.
+MODULE:     3 — Real-time Streaming & Integration
+TASK:       🔄 Task 3.3: Stream Processing với Spark Structured Streaming (Micro-batch, Watermark, Event Time)
+GIAI ĐOẠN:  Khởi động Task 3.3. Tìm hiểu triết lý Bảng Vô Hạn (Unbounded Table) và cơ chế Micro-batch Processing.
+TRẠNG THÁI: 🔄 Bắt đầu Task 3.3 (Tầng 1 — WHAT).
 
 FILE ĐANG THỰC HIỆN:
-  02_DISTRIBUTED_SYSTEMS/RESEARCH_03_SPARK_INTERNALS.md
+  03_REALTIME_STREAMING/RESEARCH_03_SPARK_STREAMING.md
 
-CÂU HỎI ĐANG CHỜ TRẢ LỜI (PENDING) - BẮT ĐẦU PHIÊN SAU TỪ ĐÂY:
-  "1. RAM mất điện là mất dữ liệu, vậy chữ 'Resilient' (kiên cường) của RDD hoạt động thế nào để tự hồi phục dữ liệu khi 1 máy bị sập?
-   2. Tại sao khi bạn gọi liên tục 10 lệnh Transformation (map, filter), Spark lại 'lười biếng' không chạy ngay mà chờ đến khi gặp Action (count, show) mới thực thi?"
+CÂU HỎI KÍCH HOẠT (PENDING):
+  "Spark Structured Streaming định nghĩa dòng dữ liệu liên tục theo mô hình 'Bảng Vô Hạn' (Unbounded Table). Bằng ngôn từ của bạn (không dùng thuật ngữ rối rắm), hãy giải thích: Một bảng không có đáy hoạt động như thế nào khi các sự kiện mới liên tục ập đến từ Kafka?"
 ```
 
 ---
@@ -33,6 +32,7 @@ CÂU HỎI ĐANG CHỜ TRẢ LỜI (PENDING) - BẮT ĐẦU PHIÊN SAU TỪ ĐÂ
 | HAVING vs WHERE & Execution Order | [MODULE_01_SUMMARY](file:///c:/Users/ACER/.gemini/antigravity/scratch/data-Engineer-mastery/01_DATA_WAREHOUSING_SQL/MODULE_01_SUMMARY.md#L30) | 2026-08-11 | 2026-08-18 | 1 | 🟡 Ôn lại sau 7 ngày |
 | Window Functions (Ranking, Lag/Lead) | [RESEARCH_02_WINDOW_FUNCTIONS.md](file:///c:/Users/ACER/.gemini/antigravity/scratch/data-Engineer-mastery/01_DATA_WAREHOUSING_SQL/RESEARCH_02_WINDOW_FUNCTIONS.md) | 2026-08-11 | 2026-08-18 | 3 | 🟡 Ôn lại sau 7 ngày |
 | WAL Log & Transaction Isolation | [RESEARCH_07](file:///c:/Users/ACER/.gemini/antigravity/scratch/data-Engineer-mastery/00_HARDCORE_FOUNDATION/RESEARCH_07_ETL_FOUNDATION.md) | 2026-08-11 | 2026-08-25 | 1 | 🟢 Mới học — ôn sau 14 ngày |
+| Delta Lake ACID & Copy-on-Write | [RESEARCH_04](file:///c:/Users/ACER/.gemini/antigravity/scratch/data-Engineer-mastery/02_DISTRIBUTED_SYSTEMS/RESEARCH_04_STORAGE_LAYER.md) | 2026-09-21 | 2026-09-28 | 1 | 🟢 Mới học — ôn sau 7 ngày |
 
 ---
 
@@ -57,15 +57,17 @@ DATA ENGINEERING MASTERY — Trung tâm Dữ liệu Quốc gia
 │   ├── ✅ Task 3: Data Modeling (Snowflake, SCD Type 1/2/3, Surrogate Key)
 │   └── ✅ Task 4: Query Optimization (Index, EXPLAIN, Partition)
 │
-├── 🔄 MODULE 2: Distributed Systems & Big Data  ← ĐANG Ở ĐÂY
+├── ✅ MODULE 2: Distributed Systems & Big Data  (HOÀN THÀNH)
 │   ├── ✅ Task 2.0: Medallion Architecture & Cloud Storage
-│   ├── 🔄 Task 2.1: Hadoop Ecosystem (HDFS, YARN)  ← TIẾP THEO
-│   ├── 🔒 Apache Spark Internals (DAG, Shuffling)
-│   └── 🔒 Storage Layer (Delta Lake, Iceberg)
+│   ├── ✅ Task 2.1: Hadoop Ecosystem (HDFS)
+│   ├── ✅ Task 2.2: YARN — Resource Negotiator
+│   ├── ✅ Task 2.3: Apache Spark Internals (RDD, DAG, Shuffling)
+│   └── ✅ Task 2.4: Storage Layer (Delta Lake, Iceberg)
 │
-├── 🔒 MODULE 3: Real-time Streaming
-│   ├── 🔒 Apache Kafka (Pub/Sub, Partitioning)
-│   └── 🔒 CDC (Change Data Capture)
+├── 🔄 MODULE 3: Real-time Streaming  ← ĐANG Ở ĐÂY
+│   ├── ✅ Task 3.1: Apache Kafka Fundamentals (Pub/Sub, Partitioning, Consumer Group, Replication, acks)
+│   ├── ✅ Task 3.2: CDC (Change Data Capture) với Debezium & Kafka Connect
+│   └── 🔄 Task 3.3: Stream Processing với Spark Structured Streaming (Micro-batch, Watermark, Event Time)  ← TIẾP THEO
 │
 ├── 🔒 MODULE 4: Orchestration & Data Quality
 │   ├── 🔒 Apache Airflow (DAG, Retry, Backfill)
@@ -98,6 +100,13 @@ Tầng 5 — TRADE-OFF : Khi nào KHÔNG dùng? (Chi phí ẩn, giải pháp tha
 ```
 > Chi tiết → xem `STUDY_SCHEDULE.md` phần **FRAMEWORK 5 TẦNG HIỂU SÂU**
 > Câu hỏi kiểm tra PHẢI cover ít nhất Tầng 3 (WHY) và Tầng 4 (FAILURE)
+
+### 🇺🇸 QUY TẮC BẮT BUỘC CHO MỌI PHIÊN HỌC (MENTOR PHẢI NHỚ):
+1. **Tiếng Anh Chuyên Ngành (English-in-Tech):** Mọi thuật ngữ tiếng Anh mới BẮT BUỘC phải cung cấp:
+   - **Phiên âm IPA chuẩn** (ví dụ: `/ˈtuːm.stəʊn/`).
+   - **Nghĩa đen đời thường** để bẻ khóa trực quan (ví dụ: bia mộ cắm ở nghĩa trang).
+   - **Nghĩa kỹ thuật chuyên ngành** trong hệ thống Data.
+2. **Tôn trọng bài tập của học viên:** Tuyệt đối KHÔNG tự ý ghi đè bài giải vào template của học viên (`RESEARCH_*.md`). Học viên tự gõ bằng ngôn từ của mình. Mentor đóng vai trò định hướng, phản biện (Attack), gợi ý và chấm điểm.
 
 ### Cuối mỗi ngày học (học viên tự cập nhật hoặc yêu cầu Mentor cập nhật):
 - Cập nhật `TRẠNG THÁI` trong `VỊ TRÍ HIỆN TẠI`
@@ -136,6 +145,11 @@ Tầng 5 — TRADE-OFF : Khi nào KHÔNG dùng? (Chi phí ẩn, giải pháp tha
 | 2026-09-02 | M2/T2.0 | Medallion Architecture: Bronze/Silver/Gold. Parquet open format. Storage-compute separation. Thiết kế 3 layer cho Bộ Nội Vụ 63 tỉnh. Validation rules Silver layer. | ✅ Hoàn thành |
 | 2026-09-07 | M2/T2.1 | HDFS: NameNode/DataNode, Block size, Replication Factor. Tính toán dung lượng cho 800GB dân số. Phân tích Small Files Problem & cạn kiệt RAM NameNode. Hoàn thành Task 2.1 | ✅ Hoàn thành |
 | 2026-09-08 | M2/T2.2 | YARN: RM, NM, AM, Container. Phân bổ tài nguyên 5 node, so sánh FIFO vs Fair Scheduler, luồng thu hồi Container. Hoàn thành Task 2.2 | ✅ Hoàn thành |
+| 2026-09-18 | M2/T2.3 | Spark Internals: In-Memory vs MapReduce, RDD Lineage, Lazy Evaluation & Catalyst Optimizer, Narrow/Wide Dependency, Shuffling, OOM & Data Skew. Hoàn thành Task 2.3 | ✅ Hoàn thành |
+| 2026-10-01 | M3/T3.1 | Hoàn thành xuất sắc Task 3.1 Kafka Fundamentals (Sát hạch 8.9/10, tạo KAFKA_VISUAL_REFERENCE.md). | ✅ Hoàn thành |
+| 2026-10-01 | M3/T3.2 | Bắt đầu Task 3.2 CDC Debezium & Kafka Connect. Đã hoàn thành Tầng 1, 2. Nâng chuẩn phản biện Production Reality cho Tầng 3, 4, 5. | ⏳ Đang làm |
+| 2026-10-12 | M3/T3.2 | Hoàn thành xuất sắc Task 3.2 (Test 7.5/10). Chuẩn hóa thuật ngữ Tiếng Anh IPA, lab mô phỏng REPLICA IDENTITY, thiết lập quy tắc bắt buộc vào kiến trúc Mentor. | ✅ Hoàn thành |
+| 2026-10-12 | M3/T3.3 | Bắt đầu Task 3.3 Spark Structured Streaming. Thấu suốt Unbounded Table, Stream-Table Duality, 3 Output Modes, Event Time vs Processing Time, Watermark & Late Data qua case Grab. | ⏳ Đang làm |
 ---
 
 ## 📂 SƠ ĐỒ FILE (Tìm tài liệu nhanh)
@@ -143,6 +157,7 @@ Tầng 5 — TRADE-OFF : Khi nào KHÔNG dùng? (Chi phí ẩn, giải pháp tha
 ```
 data-Engineer-mastery/
 ├── DASHBOARD.md                        ← FILE NÀY (Đọc đầu tiên)
+├── NEURAL_LEARNING_MAP.md              ← 🧠 BẢN ĐỒ LIÊN KẾT THẦN KINH & ÔN LUYỆN
 ├── HABIT_TRACKER.md                    ← BẢNG KỶ LUẬT THÉP & CHECK-IN HÀNG NGÀY
 ├── .MENTOR_CONTEXT.md                  ← Luật & vai trò của Mentor
 ├── MASTERY_PLAN.md                     ← Lộ trình tổng thể & cam kết
@@ -158,7 +173,19 @@ data-Engineer-mastery/
 │
 ├── 01_DATA_WAREHOUSING_SQL/
 │   ├── MODULE_01_SUMMARY.md            ← Mục lục Module 1
-│   └── RESEARCH_02_WINDOW_FUNCTIONS.md ← (Chưa tồn tại - cần tạo)
+│   └── RESEARCH_02_WINDOW_FUNCTIONS.md
+│
+├── 02_DISTRIBUTED_SYSTEMS/
+│   ├── RESEARCH_00_MODERN_ARCHITECTURE.md
+│   ├── RESEARCH_01_HDFS.md
+│   ├── REF_HDFS_SENIOR_LECTURE.md      ← Bài giảng tham khảo HDFS
+│   ├── RESEARCH_02_YARN.md
+│   ├── RESEARCH_03_SPARK_INTERNALS.md  ← ✅ Hoàn thành
+│   ├── REF_SPARK_SENIOR_LECTURE.md     ← 📚 Bài giảng chuyên sâu Spark Internals
+│   └── RESEARCH_04_STORAGE_LAYER.md    ← ✅ Hoàn thành (Delta Lake & Iceberg)
+│
+├── 03_REALTIME_STREAMING/              ← 🚀 KẾ TIẾP
+│   └── RESEARCH_01_KAFKA_FUNDAMENTALS.md
 │
 └── Data-Engineer-Books-main/           ← Sách tham khảo
 ```
